@@ -1,13 +1,106 @@
 @import 'tailwindcss';
-@import '../../vendor/tallstackui/tallstackui/css/v4.css'; 
- 
-@plugin '@tailwindcss/forms'; 
- 
-@source '../../vendor/tallstackui/tallstackui/**/*.php'; 
+@import '../../vendor/tallstackui/tallstackui/css/v4.css';
 
+@plugin '@tailwindcss/forms';
+
+@source '../../vendor/tallstackui/tallstackui/**/*.php';
 @source '../views';
+@source '../../app/Providers/*.php';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* =========================================================================
+       PRIMARY COLOR — Professional Blue (#2563EB)
+       Used by TallStackUI for: buttons, badges, focus rings, active states,
+       links, progress bars, checkboxes, radio buttons, toggles
+       ========================================================================= */
+    --color-primary-50:  #eff6ff;
+    --color-primary-100: #dbeafe;
+    --color-primary-200: #bfdbfe;
+    --color-primary-300: #93c5fd;  /* light accent, hover tint on dark bg */
+    --color-primary-400: #60a5fa;  /* icon color in dark mode (text-primary-400) */
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;  /* primary button bg, active sidebar item, links */
+    --color-primary-700: #1d4ed8;  /* button hover */
+    --color-primary-800: #1e40af;
+    --color-primary-900: #1e3a8a;
+    --color-primary-950: #172554;
+
+    /* =========================================================================
+       DARK MODE ZINC HIERARCHY
+       950=body bg → 900=sidebar/header → 800=input → 700=card/panel
+       → 600=border/hover → 500=divider → 400=icon/placeholder
+       → 300=body text → 200=heading text → 50=bright text on dark
+       ========================================================================= */
+    --color-dark-50:  #fafafa;
+    --color-dark-100: #f4f4f5;
+    --color-dark-200: #e4e4e7;   /* heading / prominent text */
+    --color-dark-300: #d4d4d8;   /* body text / content text */
+    --color-dark-400: #a1a1aa;   /* icon, placeholder, muted text */
+    --color-dark-500: #71717a;   /* divider */
+    --color-dark-600: #3f3f46;   /* border, hover bg, disabled bg */
+    --color-dark-700: #27272a;   /* card, modal, dropdown panel */
+    --color-dark-800: #1e1e1e;   /* input field background */
+    --color-dark-900: #18181b;   /* sidebar, header background */
+    --color-dark-950: #09090b;   /* body / main content background */
+
+    /* =========================================================================
+       LIGHT MODE SURFACE
+       ========================================================================= */
+    --color-surface:     #f4f4f5;
+    --color-surface-alt: #ffffff;
+    --color-border:      #e4e4e7;
+    --color-text:        #18181b;
+    --color-text-muted:  #71717a;
 }
+
+/* =========================================================================
+   TYPOGRAPHY — headings auto-apply Plus Jakarta Sans
+   ========================================================================= */
+h1, h2, h3, h4, h5, h6,
+.font-heading {
+    font-family: var(--font-heading);
+}
+
+/* =========================================================================
+   THIN SCROLLBAR
+   ========================================================================= */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-dark-400) transparent;
+}
+
+:where(.dark, .dark *) {
+    scrollbar-color: var(--color-dark-600) transparent;
+}
+
+*::-webkit-scrollbar { width: 4px; height: 4px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+    background-color: var(--color-dark-400);
+    border-radius: 999px;
+}
+:where(.dark, .dark *)::-webkit-scrollbar-thumb {
+    background-color: var(--color-dark-600);
+}
+
+/* =========================================================================
+   PAGE ANIMATIONS
+   ========================================================================= */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up   { animation: fadeUp 0.3s ease forwards; }
+.fade-up-1 { animation-delay: 0.04s; opacity: 0; }
+.fade-up-2 { animation-delay: 0.08s; opacity: 0; }
+.fade-up-3 { animation-delay: 0.12s; opacity: 0; }
+.fade-up-4 { animation-delay: 0.16s; opacity: 0; }
+
+[x-cloak] { display: none !important; }
