@@ -164,3 +164,23 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 - Do NOT delete tests without approval.
 
 </laravel-boost-guidelines>
+
+## Design System
+
+Full documentation: `design-system/MASTER.md`
+
+### Quick Reference
+
+**Colors:** Primary = `primary-600` (#2563eb). Dark hierarchy: body=`dark-950`, sidebar/header=`dark-900`, card/input=`dark-800`/`dark-700`, border=`dark-600`, muted=`dark-400`.
+
+**Typography:** Heading = Plus Jakarta Sans (`font-heading`), Body = Inter. Page title: `text-3xl font-bold font-heading` + gradient `bg-clip-text text-transparent`. Each page has its own gradient color (Dashboard=blue, Pengeluaran=red).
+
+**Layout padding:** Both header bar AND main content use `px-6` — must stay in sync to keep elements flush.
+
+**Card pattern:** `bg-white dark:bg-[#1e1e1e] border border-zinc-200 dark:border-white/8 rounded-xl` — always this, never deviate.
+
+**Stat card:** `h-12 w-12` icon container rounded-xl + `text-2xl font-bold font-heading` value. Grid: `grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4`.
+
+**TallStackUI v3:** Use `TallStackUi::customize()` only — never `personalize()`. Customizations live in `AppServiceProvider::configureTallStackUi()`.
+
+**Livewire SFC:** Files named `⚡name.blade.php` in `resources/views/components/`. Use `use Livewire\Component` (Volt not installed).
